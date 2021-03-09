@@ -122,13 +122,12 @@ likely want to update:
 
 #### OHIF Viewer
 
-The OHIF Viewer's configuration is imported from a static `.js` file and made
-available globally at `window.config`. The configuration we use is set to a
-specific file when we build the viewer, and determined by the env variable:
-`REACT_APP_CONFIG`. You can see where we set its value in the `dockerfile` for
-this solution:
+The OHIF Viewer's configuration is imported from a static `.js` file. The
+configuration we use is set to a specific file when we build the viewer, and
+determined by the env variable: `APP_CONFIG`. You can see where we set its value
+in the `dockerfile` for this solution:
 
-`ENV REACT_APP_CONFIG=config/docker_openresty-orthanc-keycloak.js`
+`ENV APP_CONFIG=config/docker_openresty-orthanc-keycloak.js`
 
 You can find the configuration we're using here:
 `/public/config/docker_openresty-orthanc-keycloak.js`
@@ -150,8 +149,8 @@ All other files are found in: `/docker/OpenResty-Orthanc-Keycloak/`
 | Orthanc           | [`/orthanc.json`][config-orthanc]                | [Here][orthanc-docs]                        |
 | Keycloak          | [`/ohif-keycloak-realm.json`][config-keycloak]\* |                                             |
 
-- \* These are the seed values for Keycloak. They can be manually updated at
-  `http://127.0.0.1/auth/admin`
+\* These are the seed values for Keycloak. They can be manually updated at
+`http://127.0.0.1/auth/admin`
 
 #### Keycloak Themeing
 
@@ -265,12 +264,12 @@ for OAuth:
 
 - [Diagrams of OpenID Connect Flows](https://medium.com/@darutk/diagrams-of-all-the-openid-connect-flows-6968e3990660)
 - [KeyCloak: OpenID Connect Flows](https://www.keycloak.org/docs/latest/securing_apps/index.html#authorization-code)
-  - [Good description on SSO Protocols](https://www.keycloak.org/docs/2.5/server_admin/topics/sso-protocols/oidc.html)
 
-For a different take on this setup, check out the repository one of our
-community members put together:
+For a different take on this setup, check out the repositories our community
+members put together:
 
 - [mjstealey/ohif-orthanc-dimse-docker](https://github.com/mjstealey/ohif-orthanc-dimse-docker)
+- [trypag/ohif-orthanc-postgres-docker](https://github.com/trypag/ohif-orthanc-postgres-docker)
 
 <!--
   Links
@@ -281,9 +280,9 @@ community members put together:
 [orthanc-docs]: http://book.orthanc-server.com/users/configuration.html#configuration
 [lua-resty-openidc-docs]: https://github.com/zmartzone/lua-resty-openidc
 <!-- SRC -->
-[config]: #
-[dockerfile]: #
-[config-nginx]: #
-[config-orthanc]: #
-[config-keycloak]: #
+[config]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/src/config.js
+[dockerfile]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/dockerfile
+[config-nginx]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/nginx.conf
+[config-orthanc]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/orthanc.json
+[config-keycloak]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/ohif-keycloak-realm.json
 <!-- prettier-ignore-end -->

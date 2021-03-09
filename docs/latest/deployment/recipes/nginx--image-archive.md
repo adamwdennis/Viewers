@@ -11,7 +11,7 @@ control.
 Do not use this recipe to host sensitive medical data on the open web. Depending
 on your company's policies, this may be an appropriate setup on an internal
 network when protected with a server's basic authentication. For a more robust
-setup, check out our [user account control recpie](./user-account-control.md)
+setup, check out our [user account control recipe](./user-account-control.md)
 that builds on the lessons learned here.
 
 ## Overview
@@ -49,9 +49,7 @@ We can solve this one of two ways:
 1. Have our Image Archive located at the same domain as our Web App
 2. Add appropriate `Access-Control-Allow-*` HTTP headers
 
-This solution uses the first approach, but you can see an example of the second
-in the `docker-compose` bundled with this project for local development:
-[HERE](#)
+**This solution uses the first approach.**
 
 You can read more about CORS in this Medium article: [Understanding
 CORS][understanding-cors]
@@ -121,13 +119,12 @@ likely want to update:
 
 #### OHIF Viewer
 
-The OHIF Viewer's configuration is imported from a static `.js` file and made
-available globally at `window.config`. The configuration we use is set to a
-specific file when we build the viewer, and determined by the env variable:
-`REACT_APP_CONFIG`. You can see where we set its value in the `dockerfile` for
-this solution:
+The OHIF Viewer's configuration is imported from a static `.js` file. The
+configuration we use is set to a specific file when we build the viewer, and
+determined by the env variable: `APP_CONFIG`. You can see where we set its value
+in the `dockerfile` for this solution:
 
-`ENV REACT_APP_CONFIG=config/docker_openresty-orthanc.js`
+`ENV APP_CONFIG=config/docker_openresty-orthanc.js`
 
 You can find the configuration we're using here:
 `/public/config/docker_openresty-orthanc.js`
@@ -142,11 +139,11 @@ Viewer's configuration, you can run:
 
 All other files are found in: `/docker/OpenResty-Orthanc/`
 
-| Service           | Configuration                                  | Docs                                        |
-| ----------------- | ---------------------------------------------- | ------------------------------------------- |
-| OHIF Viewer       | [dockerfile][dockerfile] / [config.js][config] | You're reading them now!                    |
-| OpenResty (Nginx) | [`/nginx.conf`][config-nginx]                  | [lua-resty-openidc][lua-resty-openidc-docs] |
-| Orthanc           | [`/orthanc.json`][config-orthanc]              | [Here][orthanc-docs]                        |
+| Service           | Configuration                     | Docs                                        |
+| ----------------- | --------------------------------- | ------------------------------------------- |
+| OHIF Viewer       | [dockerfile][dockerfile]          | You're reading them now!                    |
+| OpenResty (Nginx) | [`/nginx.conf`][config-nginx]     | [lua-resty-openidc][lua-resty-openidc-docs] |
+| Orthanc           | [`/orthanc.json`][config-orthanc] | [Here][orthanc-docs]                        |
 
 ## Next Steps
 
@@ -222,10 +219,11 @@ following resources helpful:
 - [OpenResty Guide](http://www.staticshin.com/programming/definitely-an-open-resty-guide/)
 - [Lua Ngx API](https://openresty-reference.readthedocs.io/en/latest/Lua_Nginx_API/)
 
-For a different take on this setup, check out the repository one of our
-community members put together:
+For a different take on this setup, check out the repositories our community
+members put together:
 
 - [mjstealey/ohif-orthanc-dimse-docker](https://github.com/mjstealey/ohif-orthanc-dimse-docker)
+- [trypag/ohif-orthanc-postgres-docker](https://github.com/trypag/ohif-orthanc-postgres-docker)
 
 <!--
   Links
@@ -238,8 +236,7 @@ community members put together:
 [orthanc-docs]: http://book.orthanc-server.com/users/configuration.html#configuration
 [lua-resty-openidc-docs]: https://github.com/zmartzone/lua-resty-openidc
 <!-- SRC -->
-[config]: #
-[dockerfile]: #
-[config-nginx]: #
-[config-orthanc]: #
+[dockerfile]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc/dockerfile
+[config-nginx]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc/config/nginx.conf
+[config-orthanc]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc/config/orthanc.json
 <!-- prettier-ignore-end -->
